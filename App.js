@@ -1,12 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Login from "./src/pages/Login";
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Aplicativo de Imoveis</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'
+        screenOptions={{
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: '#e09026',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        {
+          /*
+            em todas as telas(pages) é injetado na props a função navigation()
+          */
+        }
+
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={
+            { title: "Login App Immobile" }
+          }
+        />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
